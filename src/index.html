@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicaciones Interactivas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    
+        button:hover {
+            background-color: #2980b9;
+        }
+    
+        p {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+            color: #27ae60; 
+
+        }
+        .error {
+            color: #e74c3c; 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Verificación de Calificaciones</h1>
+    <label for="Calificacion">Ingresar calificación:</label>
+    <input type="text" id="Calificacion">
+    <br><br>
+    <!-- Botón para ejecutar la operación -->
+    <button type="button" onclick="VerEstado()">Ver Estado</button>
+    <p id="Resultado"></p> <!-- Mostrar resultado en un párrafo -->
+
+    <script>
+        function VerEstado() {
+            const calificacion = parseFloat(document.querySelector("#Calificacion").value); // Convertir a número
+            let resultado;
+
+            if (calificacion >= 90 && calificacion <= 100) {
+                resultado = "Aprobado con honores";
+            } else if (calificacion >= 70 && calificacion < 90) {
+                resultado = "Aprobado";
+            } else if (calificacion < 70 && calificacion >= 0) {
+                resultado = "Reprobado";
+            } else {
+                resultado = "La calificación debe estar entre 0 y 100";
+            }
+            
+            document.querySelector("#Resultado").textContent = resultado; // Mostrar resultado en el párrafo
+        }
+    </script>
+
+    <h1>Verificación de Número Par o Impar</h1>
+    <label for="numero">Ingresa un número:</label>
+    <input type="text" id="numero">
+    <br><br>
+    <!-- Botón para ejecutar la operación -->
+    <button type="button" onclick="verificarParidad()">Verificar</button>
+    <p id="resultadoParidad"></p> <!-- Mostrar resultado en un párrafo -->
+
+    <script>
+        function verificarParidad() {
+            const numero = parseInt(document.querySelector("#numero").value); // Convertir a número entero
+            
+            // Verificación de paridad
+            let mensaje;
+            if (!isNaN(numero)) {
+                if (numero % 2 === 0) {
+                    mensaje = "El número es par.";
+                } else {
+                    mensaje = "El número es impar.";
+                }
+            } else {
+                mensaje = "Por favor, ingresa un número válido.";
+            }
+            
+            document.querySelector("#resultadoParidad").textContent = mensaje;
+        }
+    </script>
+
+    <h1>Evaluación de Descuentos</h1>
+    <label for="Monto">Ingrese el Monto Total Compra:</label>
+    <input type="text" id="Monto">
+    <br> <br>
+    <!-- Botón para ejecutar la operación -->
+    <button type="button" onclick="VerDescuento()">Ver Descuento</button>
+    <br> <br>
+    <p id="Descuento"></p> <!-- Mostrar resultado en un párrafo -->
+
+    <script>
+        function VerDescuento(){
+            const Monto = parseFloat(document.querySelector("#Monto").value);
+            let montofinal;
+            if (Monto > 100) {
+                montofinal = Monto * (1-0.10); // Aplica 10% de descuento
+            } else {
+                montofinal = Monto; // Sin descuento
+            }
+            
+            document.querySelector("#Descuento").textContent = montofinal; // Muestra el monto final
+        }
+    </script>
+
+    <h1>Juego de Adivinanza de Números</h1>
+
+    <label for="Usuario">Ingresa tu número:</label>
+    <input type="number" id="Usuario" min="1" max="10">
+    <br><br>
+
+    <!-- Botón para hacer la adivinanza -->
+    <button onclick="adivinarNumero()">Adivinar</button>
+    <br><br>
+    <!-- Mensaje de resultado -->
+    <p id="resultado"></p>
+
+    <script>
+        // Generar un número aleatorio entre 1 y 10
+        const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+
+        function adivinarNumero() {
+            const Usuario = parseInt(document.getElementById("Usuario").value);
+            let mensaje;
+            // Comparar la adivinanza con el número aleatorio
+            if (Usuario === numeroAleatorio) {
+                mensaje = "¡Felicidades, adivinaste el número!";
+            } else if ( Usuario >= 1 &&  Usuario <= 10) {
+               mensaje = "Lo siento, el número era.",numeroAleatorio;
+            }else {
+                mensaje = "Ingresa un número valido entre 1 y 10"
+            }
+            document.querySelector("#resultado").textContent = mensaje
+        }
+    </script>
+    
+</body>
+</html>
